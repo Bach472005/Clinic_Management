@@ -1,6 +1,6 @@
 # 🏥 Clinic Management System
 
-Dự án quản lý phòng khám, giúp khách hàng có thể đăng ký lịch khám, quản lý lịch sử khám bệnh, và hỗ trợ quản lý bác sĩ, bệnh nhân, và các dịch vụ y tế.
+Dự án quản lý phòng khám tâm lý, giúp khách hàng có thể đăng ký lịch khám, quản lý lịch sử khám bệnh, và hỗ trợ quản lý bác sĩ, bệnh nhân, và các dịch vụ y tế.
 
 ---
 
