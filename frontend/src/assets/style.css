@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+.nav-link {
+    @apply block px-4 py-2 rounded-md text-sm font-medium text-gray-700 hover:bg-gray-100 transition;
+}
+
+.active-link {
+    @apply bg-blue-100 text-blue-700 font-semibold;
+}
+
+.error-message {
+    @apply text-red-500 font-medium;
+}
+.input {
+    @apply w-full p-2 border border-gray-300 rounded-md outline-none
+}
