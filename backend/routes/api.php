@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\UserAccountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +17,11 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [AuthController::class, 'user']);
     Route::post('/logout', [AuthController::class, 'logout']);
+    Route::get('/user/profile', [UserAccountController::class, 'index']);
     Route::put('/user/profile', [UserAccountController::class, 'updateProfile']);
     Route::put('/user/password', [UserAccountController::class, 'updatePassword']);
+});
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::get('/patient', [PatientController::class, 'index']);
 });

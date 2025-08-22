@@ -5,10 +5,12 @@ import {
 import Dashboard from '@/pages/Dashboard.vue'
 import Login from '@/pages/Auth/Login.vue'
 import Register from '@/pages/Auth/Register.vue'
-import ChangeProfile from '@/pages/Auth/Components/ChangeProfile.vue'
-import ChangePassword from '@/pages/Auth/Components/ChangePassword.vue'
 import ProfileLayout from '@/layouts/ProfileLayout.vue'
 import VerifyEmail from '@/pages/Auth/VerifyEmail.vue'
+
+import ChangeProfile from '@/pages/Patient/Components/ChangeProfile.vue'
+import ChangePassword from '@/pages/Patient/Components/ChangePassword.vue'
+import MedicalRecord from '@/pages/Patient/Components/MedicalRecord.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -38,6 +40,7 @@ const router = createRouter({
       children: [
         { path: '', component: ChangeProfile },
         { path: 'change-password', component: ChangePassword },
+        { path: 'medical-record', component: MedicalRecord },
       ]
     },
     {

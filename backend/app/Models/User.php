@@ -34,7 +34,15 @@ class User extends Authenticatable implements MustVerifyEmail
             'role_id'
         );
     }
-    
+    public function patient()
+    {
+        return $this->hasOne(Patient::class);
+    }
+
+    public function psychologist()
+    {
+        return $this->hasOne(Psychologist::class);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *
@@ -57,4 +65,5 @@ class User extends Authenticatable implements MustVerifyEmail
             'password' => 'hashed',
         ];
     }
+    
 }

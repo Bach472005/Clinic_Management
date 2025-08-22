@@ -15,10 +15,10 @@ return new class extends Migration
         Schema::create('patients', function (Blueprint $table) {
             $table->id();
             $table->string('nickname', 255)->nullable();
-            $table->date('dob');
-            $table->enum('gender', ['male', 'female', 'other']);
+            $table->date('dob')->nullable();
+            $table->enum('gender', ['male', 'female', 'other'])->nullable();
             $table->text('notes')->nullable();
-            $table->text('address');
+            $table->text('address')->nullable();
             $table->string('occupation')->nullable();
             $table->foreignIdFor(
                 User::class,

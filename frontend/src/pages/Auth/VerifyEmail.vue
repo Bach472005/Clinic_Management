@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import axios from 'axios'
 import { useRoute, useRouter } from 'vue-router'
+import GuestLayout from '@/layouts/GuestLayout.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -38,8 +39,10 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="email-verify">
-    <h2>{{ message }}</h2>
-    <button @click="router.push('/login')">Đăng nhập</button>
-  </div>
+  <GuestLayout>
+    <div class="email-verify">
+      <h2>{{ message }}</h2>
+      <button @click="router.push('/login')">Đăng nhập</button>
+    </div>
+  </GuestLayout>
 </template>

@@ -93,6 +93,7 @@ onMounted(() => {
     });
   }
 });
+console.log(user);
 
 const handleLogout = async () => {
   await logout()

@@ -38,7 +38,7 @@
 </template>
 
 <script setup>
-import { changePassword } from '@/services/auth';
+import { changePassword } from '@/services/profile';
 import { ref } from 'vue';
 
 const form = ref({

@@ -87,45 +87,4 @@ export const logout = async () => {
   }
 };
 
-// Change password
 
-export const changePassword = async (data, setLoading) => {
-  try {
-    setLoading(true);
-    const response = await axios.put('/api/user/password', data);
-    console.log(response.data.message);
-    
-    router.back();
-  } catch (error) {
-    console.log(error.response.data);
-    if (error.response && error.response.data.errors) {
-      return error.response.data.errors;
-    } else {
-      console.log('Da co loi xay ra vui long thu lai');
-      return null;
-    }
-  } finally {
-    setLoading(false);
-  }
-}
-
-export const changeProfile = async (data, setLoading) => {
-  try {
-    setLoading(true);
-    const response = await axios.put('/api/user/profile', data);
-
-    sessionStorage.setItem('user', JSON.stringify(response.data.user));
-    
-    router.back();
-  } catch (error) {
-    console.log(error.response.data);
-    if (error.response && error.response.data.errors) {
-      return error.response.data.errors;
-    } else {
-      console.log('Da co loi xay ra vui long thu lai');
-      return null;
-    }
-  } finally {
-    setLoading(false);
-  }
-}

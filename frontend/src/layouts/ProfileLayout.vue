@@ -2,7 +2,7 @@
   <GuestLayout>
     <div class="p-6 bg-white shadow-md rounded-md flex gap-8">
       <!-- Sidebar trái -->
-      <div class="w-1/3 flex flex-col items-center">
+      <div class="w-1/4 flex flex-col items-center">
         <Menu></Menu>
       </div>
 
@@ -16,7 +16,7 @@
 
 <script setup>
 import GuestLayout from '@/layouts/GuestLayout.vue'
-import Menu from '@/pages/Auth/Components/Menu.vue'
+import Menu from '@/pages/Patient/Components/Menu.vue'
 
 // Submit handler
 const submitProfile = () => {

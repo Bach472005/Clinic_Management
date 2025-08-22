@@ -5,7 +5,7 @@
 
     <!-- Main Content -->
     <main class="flex-grow">
-      <div class="max-w-7xl mx-auto px-4 py-8">
+      <div class="mx-auto px-4 py-8">
         <slot></slot>
       </div>
     </main>

@@ -32,7 +32,6 @@ class AuthController extends Controller
             'email' => $user->email,
             // thêm các trường cần thiết
         ]);
-        
     }
 
     public function login(Request $request) {
@@ -72,6 +71,6 @@ class AuthController extends Controller
 
     public function user(Request $request)
     {
-        return response()->json(Auth::user()->load('role'));
+        return response()->json(Auth::user());
     }
 }

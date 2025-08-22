@@ -60,9 +60,9 @@
         </RouterLink>
 
         <RouterLink
-          to="/medical"
+          to="/profile/medical-record"
           class="nav-link"
-          :class="{ 'active-link': $route.path.startsWith('/medical') }"
+          :class="{ 'active-link': $route.path === '/profile/medical-record' }"
         >
           Thông tin bệnh án
         </RouterLink>
