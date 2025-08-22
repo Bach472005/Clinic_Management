@@ -8,6 +8,7 @@ import Register from '@/pages/Auth/Register.vue'
 import ChangeProfile from '@/pages/Auth/Components/ChangeProfile.vue'
 import ChangePassword from '@/pages/Auth/Components/ChangePassword.vue'
 import ProfileLayout from '@/layouts/ProfileLayout.vue'
+import VerifyEmail from '@/pages/Auth/VerifyEmail.vue'
 
 const router = createRouter({
   history: createWebHistory(
@@ -24,6 +25,11 @@ const router = createRouter({
       name: 'register',
       component: Register,
       meta: { layout: 'guest', role: 'guest' }
+    },
+    {
+      path: '/verify-email/:id/:hash',
+      name: 'EmailVerify',
+      component: VerifyEmail
     },
     {
       path: '/profile',

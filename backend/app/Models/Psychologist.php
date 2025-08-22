@@ -13,6 +13,14 @@ class Psychologist extends Model
         'specialization', 'bio', 'experience'
     ];
 
+    public function user() 
+    {
+        return $this->belongsTo(
+            User::class,
+            'user_id'
+        );
+    }
+    
     public function appointments()
     {
         return $this->hasMany(

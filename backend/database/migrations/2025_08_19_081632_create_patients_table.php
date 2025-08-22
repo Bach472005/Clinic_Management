@@ -18,7 +18,8 @@ return new class extends Migration
             $table->date('dob');
             $table->enum('gender', ['male', 'female', 'other']);
             $table->text('notes')->nullable();
-            
+            $table->text('address');
+            $table->string('occupation')->nullable();
             $table->foreignIdFor(
                 User::class,
                 'user_id'

@@ -55,7 +55,11 @@ class AuthController extends Controller
             ]);
         }
     
-        return response()->json(['error' => 'Unauthorized'], 401);
+        return response()->json([
+            'errors' => [
+                'password' => 'Wrong password or email'
+            ]
+        ], 422);
     }
     
 

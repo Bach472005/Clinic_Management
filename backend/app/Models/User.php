@@ -27,14 +27,14 @@ class User extends Authenticatable implements MustVerifyEmail
         'avatar_url',
     ];
 
-    public function role () 
+    public function role() 
     {
         return $this->belongsTo(
             Role::class,
             'role_id'
         );
     }
-
+    
     /**
      * The attributes that should be hidden for serialization.
      *

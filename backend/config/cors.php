@@ -15,7 +15,11 @@ return [
     |
     */
 
-    'paths' => ['api/*', 'sanctum/csrf-cookie'],
+    'paths' => [
+        'api/*', 
+        'sanctum/csrf-cookie', 
+        'email/verify/*',
+    ],
     'allowed_methods' => ['*'],
     'allowed_origins' => ['http://localhost:5173'], // Vue.js dev server
     'allowed_origins_patterns' => [],
@@ -23,5 +27,4 @@ return [
     'exposed_headers' => [],
     'max_age' => 0,
     'supports_credentials' => true,
-
 ];
