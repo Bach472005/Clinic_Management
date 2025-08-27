@@ -6,7 +6,7 @@
     <!-- Main Content -->
     <main class="flex-grow">
       <div class="mx-auto px-4 py-8">
-        <slot></slot>
+        <router-view></router-view>
       </div>
     </main>
 

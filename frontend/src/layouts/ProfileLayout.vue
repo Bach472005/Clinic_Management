@@ -1,5 +1,5 @@
 <template>
-  <GuestLayout>
+  <PatientLayout>
     <div class="p-6 bg-white shadow-md rounded-md flex gap-8">
       <!-- Sidebar trái -->
       <div class="w-1/4 flex flex-col items-center">
@@ -11,12 +11,13 @@
         <router-view></router-view>
       </div>
     </div>
-  </GuestLayout>
+  </PatientLayout>
 </template>
 
 <script setup>
 import GuestLayout from '@/layouts/GuestLayout.vue'
 import Menu from '@/pages/Patient/Components/Menu.vue'
+import PatientLayout from './PatientLayout.vue'
 
 // Submit handler
 const submitProfile = () => {

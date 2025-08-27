@@ -25,6 +25,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'phone', 
         'avatar_url',
+        'role_id'
     ];
 
     public function role() 

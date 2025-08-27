@@ -43,7 +43,15 @@ class AuthController extends Controller
     
         // Xác thực thông tin người dùng
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            $user = Auth::user()->load('role');
+            $user = Auth::user();
+            $relations = ['role'];
+            
+            if ($user->role->name === 'patient') {
+                $relations[] = 'patient';
+            } elseif ($user->role->name === 'psychologist') {
+                $relations[] = 'psychologist';
+            }
+            $user->load($relations);
             // Tạo token
             $token = $user->createToken('ClinicManagement')->plainTextToken;
             

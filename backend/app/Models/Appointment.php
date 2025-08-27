@@ -10,7 +10,7 @@ class Appointment extends Model
     use HasFactory;
 
     protected $fillable = [
-        'schedule_time', 'method', 'status', 'notes'
+        'method', 'status', 'notes', 'version', 'patient_id', 'psychologist_id', 'schedule_id', 'modified_id'
     ];
 
     public function patient()
@@ -26,7 +26,10 @@ class Appointment extends Model
             Psychologist::class
         );
     }
-
+    public function schedule()
+    {
+        return $this->belongsTo(SchedulePsychologist::class, 'schedule_id');
+    }
     public function feedBack()
     {
         return $this->hasOne(

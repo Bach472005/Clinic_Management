@@ -2,28 +2,68 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\UpdateProfileRequest;
+use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Facades\DB;
 
 class UserAccountController extends Controller
 {
-    public function updateProfile(Request $request)
+    public function updateProfile(UpdateProfileRequest $request)
     {
         $user = $request->user();
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => 'nullable|string|max:11|min:10',
+        $validated = $request->validated();
+    
+        DB::transaction(function () use ($user, $validated) {
+            $user->update([
+                'name' => $validated['name'],
+                'phone' => $validated['phone'] ?? null,
+            ]);
+        
+            $patientData = [
+                'nickname' => $validated['nickname'] ?? null,
+                'dob' => $validated['dob'] ?? null,
+                'gender' => $validated['gender'] ?? null,
+                'address' => $validated['address'] ?? null,
+                'occupation' => $validated['occupation'] ?? null,
+            ];
+        
+            if ($user->patient) {
+                $user->patient->update($patientData);
+            } else {
+                $user->patient()->create($patientData);
+            }
+        
+            // Cập nhật lại user từ DB để đảm bảo có patient và role
+            $user = $user->fresh(['role', 'patient']);
+            $freshPatient = $user->patient;
+        
+            $hasAllFields = $freshPatient &&
+                $freshPatient->dob &&
+                $freshPatient->gender &&
+                $freshPatient->address &&
+                $freshPatient->occupation;
+        
+                if ($hasAllFields && $user->role->name === 'guest') {
+                    $patientRoleId = Cache::rememberForever('role_id_patient', function () {
+                        return Role::where('name', 'patient')->value('id');
+                    });
+                    if ($patientRoleId) {
+                        $user->update(['role_id' => $patientRoleId]);
+                    }
+                }
+        });
+        return response()->json([
+            'message' => 'Profile updated successfully',
+            'user' => $user->load(['role', 'patient']),
         ]);
-
-        $user->name = $request->name;
-        $user->phone = $request->phone;
-        $user->save();
-
-        return response()->json(['message' => 'Profile updated successfully', 'user' => $user->load('role')]);
     }
 
+
+    
     public function updatePassword(Request $request)
     {
         $user = $request->user();

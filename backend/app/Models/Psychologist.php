@@ -10,7 +10,7 @@ class Psychologist extends Model
     use HasFactory;
 
     protected $fillable = [
-        'specialization', 'bio', 'experience'
+        'specialization', 'bio', 'experience', 'user_id'
     ];
 
     public function user() 

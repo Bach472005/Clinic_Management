@@ -1,5 +1,4 @@
 <template>
-  <GuestLayout>
     <div class="w-full max-w-md mx-auto mt-8">
       <h2 class="text-xl font-bold mb-4 text-center">Register</h2>
       <form @submit.prevent="handleSubmit">
@@ -68,13 +67,11 @@
         </button>
       </form>
     </div>
-  </GuestLayout>
 </template>
 
 <script setup>
 import { ref } from 'vue'
 import { register } from '@/services/auth'
-import GuestLayout from '@/layouts/GuestLayout.vue'
 
 const loading = ref(false);
 

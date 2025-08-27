@@ -16,8 +16,7 @@ return new class extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->id();
-            $table->dateTime('schedule_time');
-            $table->enum('method', ['offline', 'online'])->default('offline');
+            $table->enum('method', allowed: ['offline', 'online'])->default('offline');
             $table->enum('status', ['pending', 'confirmed', 'canceled', 'completed'])->default('pending');
             $table->text('notes')->nullable()->comment('Internal notes');
             $table->unsignedInteger('version')->default(1);
@@ -37,6 +36,8 @@ return new class extends Migration
                 'psychologist_id'
             )->constrained('psychologists');
             $table->timestamps();
+
+            
         });
     }
 

@@ -1,3 +1,44 @@
+<script setup>
+import { ref, onMounted, onBeforeUnmount, computed } from 'vue'
+import { useUserStore } from '../stores/user'
+import { logout } from '../services/auth'
+import { useRouter, RouterLink } from 'vue-router'
+
+const router = useRouter()
+const userStore = useUserStore()
+const user = computed(() => userStore.user)
+
+onMounted(() => {
+  userStore.initUser()
+})
+
+const isDropdownOpen = ref(false)
+const dropdownRef = ref(null)
+
+function toggleDropdown() {
+  isDropdownOpen.value = !isDropdownOpen.value
+}
+
+const handleLogout = async () => {
+  await logout()
+  userStore.user = null
+  router.push('/login')
+}
+
+const handleClickOutside = (event) => {
+  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
+    isDropdownOpen.value = false
+  }
+}
+
+onMounted(() => {
+  window.addEventListener('click', handleClickOutside)
+})
+onBeforeUnmount(() => {
+  window.removeEventListener('click', handleClickOutside)
+})
+</script>
+
 <template>
   <header class="bg-white shadow-md">
     <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
@@ -68,47 +109,3 @@
     </div>
   </header>
 </template>
-
-<script setup>
-import { RouterLink } from 'vue-router'
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { getUser, logout } from '../services/auth'
-
-const user = ref(null)
-const isDropdownOpen = ref(false)
-const dropdownRef = ref(null)
-
-function toggleDropdown() {
-  isDropdownOpen.value = !isDropdownOpen.value
-}
-
-onMounted(() => {
-  const storedUser = sessionStorage.getItem('user');
-  if (storedUser) {
-    user.value = JSON.parse(storedUser); 
-  } else {
-    getUser().then(response => {
-      user.value = response.data;
-      sessionStorage.setItem('user', JSON.stringify(response.data)); 
-    });
-  }
-});
-console.log(user);
-
-const handleLogout = async () => {
-  await logout()
-}
-
-const handleClickOutside = (event) => {
-  if (dropdownRef.value && !dropdownRef.value.contains(event.target)) {
-    isDropdownOpen.value = false
-  }
-}
-
-onMounted(() => {
-  window.addEventListener('click', handleClickOutside)
-})
-onBeforeUnmount(() => {
-  window.removeEventListener('click', handleClickOutside)
-})
-</script>

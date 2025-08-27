@@ -10,19 +10,23 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up(): void
+    public function up()
     {
         Schema::create('psychologists', function (Blueprint $table) {
             $table->id();
+            
             $table->string('specialization');
             $table->text('bio');
             $table->unsignedTinyInteger('experience');
 
-            $table->foreignIdFor(
-                User::class,
-                'user_id'
-            )->constrained('users');
-            
+            // 🔽 Trường mới được thêm
+            $table->string('education')->nullable();
+            $table->string('method')->nullable();
+            $table->text('focus_areas')->nullable();
+            $table->string('image_url')->nullable(); // URL ảnh bác sĩ
+
+            $table->foreignIdFor(User::class, 'user_id')->constrained('users');
+
             $table->timestamps();
         });
     }
